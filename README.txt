@@ -1,4 +1,4 @@
-Clone all the repository
+Clone the repository
 Write a prompt that you want to query the dataset for and save it as 'prompt.txt'
 
 run the following commands:
