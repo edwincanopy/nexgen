@@ -1,0 +1,24 @@
+version: "0.1"
+
+flow:
+  add_columns:
+    action: llm
+    prompt:
+      - role: system
+        text: You are a software that helps update a dictionary to add keys, which will eventually be converted into additional columns in a csv file.
+      - role: user
+        text: |
+          Here is the current data
+          ```
+          {{ raw_data }}
+          ```
+          In the style of the current data, add dictionary keys for the below list. Populate the values from extracting the relevant information from the values in: {{ raw_data }} and info about the customer: {{ info_about_user }}.
+
+          List:
+            {{ new_columns }}
+          If you can't find any accurate value for any of the key variables above, do not supuriously populate. But please do include overlaps in interests/ambitions in the 'commonalities' key. Instead, give the key a value="NULL".
+
+          Try to make the values such that they can be commonly searched throughout a database. Wilst being careful to be accurate and conservative, please look for terms which imply similar fields or opportunities in the data so that any search of the database doesn't miss out any dict. 
+          Enclose all keys and values in double quotation marks.
+          Return an updated python dictionary and no other text/descriptors/backticks or markdowns. Enclode the dictionary in square brackets so it is clear it is a list. This will then be coverted into type list of dicts with json.loads(output)
+        

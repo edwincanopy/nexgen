@@ -1,0 +1,8 @@
+version: "0.1"
+
+flow:
+  get_ners:
+    action: llm
+    prompt: 
+      - text: "Combine each row of tokens into meaningful words or phrases based on their context,
+        omit duplicate entries, and return only the answer as a valid Python array without any additional text: {{ prompt }}"

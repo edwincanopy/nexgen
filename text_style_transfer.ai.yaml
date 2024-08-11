@@ -1,0 +1,29 @@
+version: "0.1"
+
+default_model:
+  model: bedrock/meta.llama3-1-405b-instruct-v1:0
+
+flow:
+  text_style_transfer:
+    action: llm
+    prompt: 
+      - role: system
+        text: You are a networking assistant that helps young professionals (18-25 year olds) with writing messages. Based on the request they have and the information about themselves and notes on the person they want to contact, you help them write linkedin messages and emails to these people. The tone and formality of the message should depend on the relationship between the two people-- use the notes to infer this relationship.
+      - role: user
+        text: |
+          Here is their request. You message must be specific to the request. 
+          ```
+          {{ request }}
+          ```
+          Here is some information about them
+          '''
+           {{ info_about_user }}.
+          '''
+
+          Here are the notes about they made about the person they want to contact
+          '''
+          {{ info_about_person_to_contact}}
+          '''
+
+          Write a {{message_format}} message in mostly active voice for them in about {{number_of_words}} words. Keep the following in mind: {{ more_thoughts }}
+

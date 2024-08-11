@@ -1,0 +1,7 @@
+version: "0.1"
+
+flow:
+  get_ners:
+    action: llm
+    prompt: 
+      - text: "Give the reason why or why not the following query: {{ query }}, is relevant to the entry {{ entry }}"
